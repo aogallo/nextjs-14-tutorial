@@ -21,6 +21,7 @@ export const metadata: Metadata = {
 
 export default async function Page({ searchParams }: Props) {
   const query = searchParams?.query || '';
+  console.log('query', query)
   const currentPage = Number(searchParams?.page) || 1;
 
   const totalPages = await fetchInvoicesPages(query);

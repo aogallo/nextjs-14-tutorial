@@ -22,7 +22,13 @@ const CreateInvoice = FormSchema.omit({ id: true, date: true });
 
 const UpdateInvoice = FormSchema.omit({ id: true, date: true });
 
+type FormType = z.infer<typeof FormSchema>
+
+type Test = Partial<Record<keyof FormType, string[]>>
+
 export type State = {
+  // errors?: Partial<z.infer<typeof FormSchema>>;
+  // errors?: Test
   errors?: {
     customerId?: string[];
     amount?: string[];
@@ -41,6 +47,7 @@ export async function createInvoice(prevState: State, formData: FormData) {
 
   // If form validation fails, return errors early. Otherwise, continue.
   if (!validatedFields.success) {
+    console.error('log', validatedFields.error.formErrors.fieldErrors)
     return {
       errors: validatedFields.error.flatten().fieldErrors,
       message: 'Missing Fields, Failed to Create Invoice',
