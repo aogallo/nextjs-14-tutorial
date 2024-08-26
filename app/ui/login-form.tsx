@@ -11,6 +11,12 @@ import { ArrowRightIcon } from '@heroicons/react/20/solid';
 import { Button } from './button';
 import { useFormState, useFormStatus } from 'react-dom';
 import { authenticate } from '../lib/actions';
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from '@/components/ui/tooltip';
 
 export default function LoginForm() {
   const [errorMessage, dispatch] = useFormState(authenticate, undefined);
@@ -61,8 +67,20 @@ export default function LoginForm() {
               <KeyIcon className="pointer-events-none absolute left-3 top-1/2 h-[18px] w-[18px] -translate-y-1/2 text-gray-500 peer-focus:text-gray-900" />
             </div>
           </div>
-          <QuestionMarkCircleIcon width={24} />
         </div>
+        <TooltipProvider>
+          <Tooltip>
+            <TooltipTrigger className="my-3 flex">
+              <h4>Help</h4>
+              <QuestionMarkCircleIcon width={24} />
+            </TooltipTrigger>
+            <TooltipContent>
+              <h3>Email: user@nextmail.com</h3>
+              <h3> Password: 123456</h3>
+            </TooltipContent>
+          </Tooltip>
+        </TooltipProvider>
+
         <LoginButton />
         <div className="flex h-8 items-end space-x-1">
           {/* Add form errors here */}
