@@ -22,6 +22,7 @@ export default function LoginForm() {
   const [errorMessage, dispatch] = useFormState(authenticate, undefined);
 
   return (
+    <>
     <form action={dispatch} className="space-y-3">
       <div className="flex-1 rounded-lg bg-gray-50 px-6 pb-4 pt-8">
         <h1 className={`${lusitana.className} mb-3 text-2xl`}>
@@ -41,7 +42,7 @@ export default function LoginForm() {
                 id="email"
                 type="email"
                 name="email"
-                placeholder="Enter your email address"
+                placeholder="Enter your email address."
                 required
               />
               <AtSymbolIcon className="pointer-events-none absolute left-3 top-1/2 h-[18px] w-[18px] -translate-y-1/2 text-gray-500 peer-focus:text-gray-900" />
@@ -60,7 +61,7 @@ export default function LoginForm() {
                 id="password"
                 type="password"
                 name="password"
-                placeholder="Enter password"
+                placeholder="Enter password."
                 required
                 minLength={6}
               />
@@ -68,19 +69,6 @@ export default function LoginForm() {
             </div>
           </div>
         </div>
-        <TooltipProvider>
-          <Tooltip>
-            <TooltipTrigger className="my-3 flex">
-              <h4>Help</h4>
-              <QuestionMarkCircleIcon width={24} />
-            </TooltipTrigger>
-            <TooltipContent>
-              <h3>Email: user@nextmail.com</h3>
-              <h3> Password: 123456</h3>
-            </TooltipContent>
-          </Tooltip>
-        </TooltipProvider>
-
         <LoginButton />
         <div className="flex h-8 items-end space-x-1">
           {/* Add form errors here */}
@@ -93,6 +81,19 @@ export default function LoginForm() {
         </div>
       </div>
     </form>
+    <TooltipProvider>
+          <Tooltip>
+            <TooltipTrigger className="my-3 flex">
+              <h4>Help</h4>
+              <QuestionMarkCircleIcon width={24} />
+            </TooltipTrigger>
+            <TooltipContent>
+              <h3>Email: user@nextmail.com</h3>
+              <h3> Password: 123456</h3>
+            </TooltipContent>
+          </Tooltip>
+        </TooltipProvider>
+    </>
   );
 }
 
